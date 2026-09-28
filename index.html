@@ -4,146 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RCDP Member Portal</title>
-    <script src="https://tailwindcss.com"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { color: #334155; padding-bottom: 40px; background: #f1f5f9; }
+        header { background: #047857; color: white; padding: 15px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header h1 { font-size: 20px; font-weight: bold; }
+        header p { font-size: 12px; opacity: 0.9; margin-top: 2px; }
+        .container { max-w: 600px; margin: 15px auto; padding: 0 12px; }
+        .tabs { display: flex; background: white; border-radius: 8px 8px 0 0; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .tab-btn { flex: 1; padding: 12px; border: none; background: white; font-weight: 600; color: #64748b; cursor: pointer; border-bottom: 2px solid transparent; }
+        .tab-btn.active { color: #047857; border-bottom: 2px solid #047857; background: #f8fafc; }
+        .card { background: white; padding: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        h2 { font-size: 18px; color: #0f172a; margin-bottom: 4px; font-weight: 700; }
+        .subtitle { font-size: 13px; color: #64748b; margin-bottom: 18px; }
+        .form-group { margin-bottom: 14px; }
+        label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 4px; }
+        input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none; }
+        input:focus { border-color: #047857; }
+        .privacy-box { background: #fffbeb; border: 1px solid #fef3c7; padding: 12px; border-radius: 6px; margin: 15px 0; }
+        .privacy-title { font-size: 12px; font-weight: bold; color: #78350f; margin-bottom: 2px; }
+        .privacy-text { font-size: 11px; color: #92400e; line-height: 1.4; }
+        .canvas-container { border: 2px dashed #94a3b8; background: #f8fafc; border-radius: 6px; height: 160px; position: relative; margin-top: 5px; touch-action: none; }
+        canvas { width: 100%; height: 100%; display: block; }
+        .clear-btn { display: inline-block; font-size: 11px; color: #dc2626; background: none; border: none; cursor: pointer; margin-top: 6px; text-decoration: underline; }
+        .submit-btn { width: 100%; background: #047857; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 15px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+        .submit-btn:hover { background: #065f46; }
+        .profile-strip { background: white; padding: 12px 15px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        .profile-name { font-weight: bold; color: #1e293b; font-size: 15px; }
+        .profile-badge { font-size: 11px; background: #dcfce7; color: #166534; padding: 3px 8px; border-radius: 999px; font-weight: bold; }
+        .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+        .metric-card { background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #64748b; }
+        .metric-card.green { border-left-color: #047857; }
+        .metric-card.amber { border-left-color: #d97706; }
+        .metric-label { font-size: 11px; font-weight: bold; color: #94a3b8; text-transform: uppercase; }
+        .metric-val { font-size: 20px; font-weight: 800; color: #1e293b; margin-top: 2px; }
+        .metric-sub { font-size: 11px; color: #64748b; margin-top: 2px; }
+        .ledger-card { background: white; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
+        .ledger-header { padding: 12px 15px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-weight: bold; font-size: 13px; color: #475569; }
+        .ledger-row { display: flex; justify-content: space-between; padding: 12px 15px; font-size: 13px; }
+        .ledger-desc { color: #334155; font-weight: 600; }
+        .ledger-date { font-size: 11px; color: #94a3b8; margin-top: 1px; }
+        .ledger-amt { font-weight: bold; color: #2563eb; }
+        .hidden { display: none !important; }
+    </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800">
+<body>
 
-    <!-- Header Navigation -->
-    <header class="bg-emerald-700 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-wide">🇰🇪 RCDP PORTAL</h1>
-            <p class="text-xs sm:text-sm bg-emerald-800 px-3 py-1 rounded">Riruta Community Development Project</p>
-        </div>
+    <header>
+        <h1>🇰🇪 RCDP MEMBER PORTAL</h1>
+        <p>Riruta Community Development Project</p>
     </header>
 
-    <main class="max-w-4xl mx-auto p-4 sm:p-6 mt-4">
-        
-        <!-- Tab Switches -->
-        <div class="flex border-b border-slate-200 mb-6 bg-white rounded-t-lg shadow-sm">
-            <button id="tab-register-btn" onclick="switchTab('register')" class="flex-1 py-3 text-center font-semibold text-emerald-700 border-b-2 border-emerald-600 focus:outline-none">
-                ✍️ Register & Sign Form
-            </button>
-            <button id="tab-dashboard-btn" onclick="switchTab('dashboard')" class="flex-1 py-3 text-center font-semibold text-slate-500 hover:text-slate-700 focus:outline-none">
-                📊 Member Dashboard
-            </button>
+    <div class="container">
+        <div class="tabs">
+            <button id="tab-register-btn" onclick="switchTab('register')" class="tab-btn active">✍️ Register & Sign</button>
+            <button id="tab-dashboard-btn" onclick="switchTab('dashboard')" class="tab-btn">📊 Account Dashboard</button>
         </div>
 
-        <!-- TAB 1: DIGITAL REGISTRATION FORM -->
-        <div id="tab-register" class="block bg-white p-6 rounded-b-lg shadow-md border border-slate-100">
-            <h2 class="text-2xl font-bold text-slate-900 mb-2">Digital Membership Application</h2>
-            <p class="text-sm text-slate-500 mb-6">Fill your official information to sign up as a member of RCDP Riruta.</p>
+        <!-- FORM TAB -->
+        <div id="tab-register" class="card">
+            <h2>Digital Application Form</h2>
+            <p class="subtitle">Complete your setup details below to create an official profile.</p>
             
-            <form id="registration-form" onsubmit="handleRegistration(event)" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">Full Name (as per ID)</label>
-                        <input type="text" id="reg-name" required class="w-full p-2.5 border border-slate-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">National ID Number</label>
-                        <input type="number" id="reg-id" required class="w-full p-2.5 border border-slate-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">M-Pesa Mobile Number</label>
-                        <input type="tel" id="reg-phone" placeholder="e.g., 0712345678" required class="w-full p-2.5 border border-slate-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">Riruta Residential Area</label>
-                        <input type="text" id="reg-area" placeholder="e.g., Satellite, Stage, Corner" required class="w-full p-2.5 border border-slate-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-                    </div>
+            <form onsubmit="handleRegistration(event)">
+                <div class="form-group">
+                    <label>Full Official Name (as per ID)</label>
+                    <input type="text" id="reg-name" required value="Brian Kimathi">
+                </div>
+                <div class="form-group">
+                    <label>National ID Number</label>
+                    <input type="number" id="reg-id" required value="369063287">
+                </div>
+                <div class="form-group">
+                    <label>M-Pesa Mobile Number</label>
+                    <input type="tel" id="reg-phone" required value="0719271310">
+                </div>
+                <div class="form-group">
+                    <label>Riruta Residential Area</label>
+                    <input type="text" id="reg-area" required value="Satellite">
                 </div>
 
-                <!-- Data Privacy Disclaimer -->
-                <div class="bg-amber-50 border border-amber-200 p-4 rounded-md text-sm text-amber-900 my-4">
-                    <p class="font-semibold mb-1">🛡️ Kenya Data Protection Act Compliance Declaration:</p>
-                    <p class="text-xs text-amber-800 leading-relaxed">
-                        By signing below, I explicitly authorize RCDP to securely store and process my data for official community table-banking records. I pledge to adhere to the core model of weekly savings and sustainable school fee self-reliance.
-                    </p>
+                <div class="privacy-box">
+                    <p class="privacy-title">🛡️ Kenya Data Protection Declaration:</p>
+                    <p class="privacy-text">By signing, I authorize RCDP to securely hold my data for official table-banking records. I commit to regular weekly contributions and community self-reliance.</p>
                 </div>
 
-                <!-- Interactive Signature Pad Wrapper -->
-                <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1">Draw Your Physical Signature Below:</label>
-                    <div class="border border-dashed border-slate-400 bg-slate-50 rounded-md relative h-40">
-                        <canvas id="signature-pad" class="w-full h-full absolute inset-0 cursor-crosshair"></canvas>
-                    </div>
-                    <button type="button" onclick="clearSignature()" class="text-xs text-red-600 mt-1 hover:underline">Clear Signature Pad</button>
+                <label>Draw Signature Below with Finger:</label>
+                <div class="canvas-container">
+                    <canvas id="signature-pad"></canvas>
                 </div>
+                <button type="button" onclick="clearSignature()" class="clear-btn">Clear Signature Pad</button>
 
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-md shadow transition">
-                    Submit Application & Generate Member Account
-                </button>
+                <button type="submit" class="submit-btn">Submit & Activate Account</button>
             </form>
         </div>
 
-        <!-- TAB 2: MEMBER DASHBOARD OVERVIEW -->
-        <div id="tab-dashboard" class="hidden space-y-6">
-            
-            <!-- Dummy Login Switch for simulation -->
-            <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-2">
+        <!-- DASHBOARD TAB -->
+        <div id="tab-dashboard" class="card hidden">
+            <div class="profile-strip">
                 <div>
-                    <span class="text-xs font-semibold text-slate-400 uppercase block">Active Account Profile</span>
-                    <span id="active-profile-name" class="font-bold text-slate-800 text-lg">Brian Omwamba (Founder)</span>
+                    <span style="font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: bold; display: block;">Active Member</span>
+                    <span id="active-profile-name" class="profile-name">Brian Kimathi</span>
                 </div>
-                <div class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">
-                    ID Verified: Member #RCDP-001
+                <span class="profile-badge">RCDP-011</span>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card green">
+                    <p class="metric-label">My Savings Pool</p>
+                    <p class="metric-val">KES <span id="dash-savings">0</span></p>
+                    <p class="metric-sub" style="color: #047857;">Weekly contribution tracked</p>
+                </div>
+                <div class="metric-card amber">
+                    <p class="metric-label">Active Fee Advance</p>
+                    <p class="metric-val">KES <span id="dash-loan">0</span></p>
+                    <p class="metric-sub">No outstanding debt</p>
                 </div>
             </div>
 
-            <!-- Financial Metric Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="bg-white p-5 rounded-lg shadow border-l-4 border-emerald-500">
-                    <p class="text-xs font-bold text-slate-400 uppercase">My Total Savings Pool</p>
-                    <p class="text-2xl font-black text-slate-900 mt-1">KES <span id="dash-savings">8,500</span></p>
-                    <p class="text-xs text-emerald-600 mt-1">✨ Weekly target active</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow border-l-4 border-amber-500">
-                    <p class="text-xs font-bold text-slate-400 uppercase">Active School Fees Advance</p>
-                    <p class="text-2xl font-black text-slate-900 mt-1">KES <span id="dash-loan">15,000</span></p>
-                    <p class="text-xs text-slate-500 mt-1">Next installment due: Term Start</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow border-l-4 border-blue-500">
-                    <p class="text-xs font-bold text-slate-400 uppercase">My Loan Multiplier Power</p>
-                    <p class="text-2xl font-black text-slate-900 mt-1">3X Max Limit</p>
-                    <p class="text-xs text-blue-600 mt-1">Eligible up to KES 25,500</p>
-                </div>
-            </div>
-
-            <!-- Ledger Record Activity Table -->
-            <div class="bg-white rounded-lg shadow border border-slate-100 overflow-hidden">
-                <div class="p-4 bg-slate-50 border-b border-slate-200">
-                    <h3 class="font-bold text-slate-700">Recent Account Activity Ledger</h3>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left text-slate-500">
-                        <thead class="text-xs text-slate-400 uppercase bg-slate-50">
-                            <tr>
-                                <th class="px-6 py-3">Date</th>
-                                <th class="px-6 py-3">Transaction details</th>
-                                <th class="px-6 py-3 text-right">Amount (KES)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ledger-body" class="divide-y divide-slate-100">
-                            <tr>
-                                <td class="px-6 py-4">24/09/2026</td>
-                                <td class="px-6 py-4">Weekly Table-Banking Chama Contribution</td>
-                                <td class="px-6 py-4 text-right text-emerald-600 font-bold">+500</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4">15/08/2026</td>
-                                <td class="px-6 py-4">Direct School Fees Disbursement to School Account</td>
-                                <td class="px-6 py-4 text-right text-amber-600 font-bold">-15,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="ledger-card">
+                <div class="ledger-header">Account Activity Ledger</div>
+                <div id="ledger-body">
+                    <div class="ledger-row">
+                        <div>
+                            <p class="ledger-desc">Digital Portal Profile Generated</p>
+                            <p class="ledger-date">System Entry Approved</p>
+                        </div>
+                        <div class="ledger-amt">Active</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <!-- UI Interaction Scripts Architecture -->
     <script>
-        // Tab switching logic Engine
         function switchTab(tabId) {
             const regTab = document.getElementById('tab-register');
             const dashTab = document.getElementById('tab-dashboard');
@@ -151,10 +145,35 @@
             const dashBtn = document.getElementById('tab-dashboard-btn');
 
             if (tabId === 'register') {
-                regTab.classList.replace('hidden', 'block');
-                dashTab.classList.replace('block', 'hidden');
-                regBtn.className = "flex-1 py-3 text-center font-semibold text-emerald-700 border-b-2 border-emerald-600 focus:outline-none";
-                dashBtn.className = "flex-1 py-3 text-center font-semibold text-slate-500 hover:text-slate-700 focus:outline-none";
+                regTab.classList.remove('hidden');
+                dashTab.classList.add('hidden');
+                regBtn.classList.add('active');
+                dashBtn.classList.remove('active');
             } else {
-                dashTab.classList.replace('hidden', 'block');
-                regTab.classList.replace('block', 'hidden');
+                dashTab.classList.remove('hidden');
+                regTab.classList.add('hidden');
+                dashBtn.classList.add('active');
+                regBtn.classList.remove('active');
+                setTimeout(initCanvas, 50);
+            }
+        }
+
+        const canvas = document.getElementById('signature-pad');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        function initCanvas() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#0f172a';
+        }
+        
+        window.addEventListener('resize', initCanvas);
+        window.addEventListener('load', initCanvas);
+        setTimeout(initCanvas, 500);
+
+        function getPos(e) {
+
