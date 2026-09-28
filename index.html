@@ -7,143 +7,138 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         body { color: #334155; padding-bottom: 40px; background: #f1f5f9; }
-        header { background: #047857; color: white; padding: 15px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        header h1 { font-size: 20px; font-weight: bold; }
-        header p { font-size: 12px; opacity: 0.9; margin-top: 2px; }
+        header { background: #047857; color: white; padding: 20px 15px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header h1 { font-size: 22px; font-weight: bold; letter-spacing: 0.5px; }
+        header p { font-size: 13px; opacity: 0.9; margin-top: 3px; }
         .container { max-w: 600px; margin: 15px auto; padding: 0 12px; }
-        .tabs { display: flex; background: white; border-radius: 8px 8px 0 0; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); flex-wrap: wrap; }
-        .tab-btn { flex: 1; min-width: 100px; padding: 12px 6px; border: none; background: white; font-size: 12px; font-weight: 600; color: #64748b; cursor: pointer; border-bottom: 2px solid transparent; text-align: center; }
-        .tab-btn.active { color: #047857; border-bottom: 2px solid #047857; background: #f8fafc; }
-        .card { background: white; padding: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        h2 { font-size: 18px; color: #0f172a; margin-bottom: 4px; font-weight: 700; }
-        h3 { font-size: 14px; color: #047857; margin: 14px 0 6px 0; font-weight: 700; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; padding-bottom: 2px; }
-        .subtitle { font-size: 13px; color: #64748b; margin-bottom: 18px; }
+        .card { background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; margin-bottom: 20px; }
+        h2 { font-size: 20px; color: #0f172a; margin-bottom: 6px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        h3 { font-size: 13px; color: #047857; margin: 18px 0 6px 0; font-weight: 700; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; letter-spacing: 0.5px; }
+        .subtitle { font-size: 13px; color: #64748b; margin-bottom: 20px; }
         .form-group { margin-bottom: 14px; }
-        label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 4px; }
-        input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none; }
-        .privacy-box { background: #fffbeb; border: 1px solid #fef3c7; padding: 12px; border-radius: 6px; margin: 15px 0; }
-        .privacy-text { font-size: 11px; color: #92400e; line-height: 1.4; }
-        .canvas-container { border: 2px dashed #047857; background: #f8fafc; border-radius: 6px; height: 160px; position: relative; margin-top: 5px; touch-action: none !important; }
-        canvas { width: 100%; height: 100%; display: block; touch-action: none !important; }
-        .clear-btn { display: inline-block; font-size: 11px; color: #dc2626; background: none; border: none; cursor: pointer; margin-top: 6px; text-decoration: underline; }
-        .submit-btn { width: 100%; background: #047857; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 15px; font-weight: bold; margin-top: 15px; cursor: pointer; }
-        .profile-strip { background: white; padding: 12px 15px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border: 1px solid #e2e8f0; }
-        .profile-name { font-weight: bold; color: #1e293b; font-size: 15px; }
-        .profile-badge { font-size: 11px; background: #dcfce7; color: #166534; padding: 3px 8px; border-radius: 999px; font-weight: bold; }
-        .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
-        .metric-card { background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #64748b; }
-        .metric-card.green { border-left-color: #047857; }
-        .metric-label { font-size: 11px; font-weight: bold; color: #94a3b8; text-transform: uppercase; }
-        .metric-val { font-size: 20px; font-weight: 800; color: #1e293b; margin-top: 2px; }
-        .info-p { font-size: 13px; color: #475569; line-height: 1.5; margin-bottom: 8px; }
-        .info-li { font-size: 13px; color: #334155; margin-left: 18px; margin-bottom: 4px; }
+        label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 5px; }
+        input, textarea { width: 100%; padding: 11px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; background: #fff; }
+        input:focus, textarea:focus { border-color: #047857; box-shadow: 0 0 0 2px rgba(4,120,87,0.1); }
+        .story-box { background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-left: 5px solid #047857; padding: 16px; border-radius: 8px; margin-bottom: 20px; }
+        .story-text { font-size: 13px; color: #14532d; line-height: 1.6; font-style: italic; }
+        .contact-pill { font-size: 12px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 6px 12px; border-radius: 6px; display: inline-block; color: #475569; font-weight: 500; margin-top: 6px; margin-right: 6px; }
+        .privacy-box { background: #fffbeb; border: 1px solid #fef3c7; padding: 14px; border-radius: 8px; margin: 18px 0; display: flex; gap: 10px; align-items: flex-start; }
+        .privacy-box input[type="checkbox"] { width: auto; margin-top: 3px; cursor: pointer; height: 16px; width: 16px; }
+        .privacy-text { font-size: 12px; color: #92400e; line-height: 1.4; }
+        .submit-btn { width: 100%; background: #047857; color: white; border: none; padding: 13px; border-radius: 8px; font-size: 15px; font-weight: bold; margin-top: 5px; cursor: pointer; transition: background 0.2s; box-shadow: 0 4px 6px rgba(4,120,87,0.15); }
+        .submit-btn:hover { background: #065f46; }
+        
+        /* Dashboard Styling */
+        .dash-tabs { display: flex; background: #e2e8f0; border-radius: 8px; padding: 4px; margin-bottom: 15px; gap: 4px; }
+        .dash-btn { flex: 1; padding: 10px 4px; border: none; background: transparent; font-size: 12px; font-weight: bold; color: #475569; border-radius: 6px; cursor: pointer; text-align: center; }
+        .dash-btn.active { background: white; color: #047857; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .profile-strip { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid #f1f5f9; margin-bottom: 20px; }
+        .profile-name { font-weight: bold; color: #1e293b; font-size: 16px; }
+        .profile-badge { font-size: 11px; background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 999px; font-weight: bold; }
+        
+        /* Interactive Tracking Sliders */
+        .tracker-card { background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 8px; margin-bottom: 15px; }
+        .slider-wrap { margin: 12px 0 8px 0; }
+        input[type="range"] { -webkit-appearance: none; width: 100%; height: 6px; background: #cbd5e1; border-radius: 5px; outline: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; background: #047857; border-radius: 50%; cursor: pointer; }
+        .calc-display { display: flex; justify-content: space-between; font-weight: bold; font-size: 15px; color: #0f172a; margin-top: 5px; background: #fff; padding: 8px; border-radius: 6px; border: 1px solid #f1f5f9; }
+        
+        .info-p { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 8px; }
+        .update-box { background: #f1f5f9; padding: 12px; border-radius: 8px; border: 1px dashed #cbd5e1; margin-top: 15px; }
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🇰🇪 RCDP MEMBER PORTAL</h1>
-        <p>Riruta Community Development Project</p>
+        <h1>🇰🇪 RIRUTA COMMUNITY DEVELOPMENT PROJECT</h1>
+        <p>Sustainable Livelihoods & Socio-Economic Empowerment</p>
     </header>
 
     <div class="container">
-        <div class="tabs">
-            <button id="tab-register-btn" onclick="switchTab('register')" class="tab-btn active">✍️ Register</button>
-            <button id="tab-info-btn" onclick="switchTab('info')" class="tab-btn">📜 CBO Info Hub</button>
-            <button id="tab-dashboard-btn" onclick="switchTab('dashboard')" class="tab-btn">📊 Dashboard</button>
-        </div>
-
-        <!-- TAB 1: REGISTRATION -->
-        <div id="tab-register" class="card">
-            <h2>Digital Application Form</h2>
-            <p class="subtitle">Complete your setup details below to create an official profile.</p>
+        
+        <!-- PUBLIC GATE (SIGN UP & FOUNDER PORTRAIT) -->
+        <div id="portal-gate" class="space-y-4">
             
-            <form onsubmit="handleRegistration(event)">
-                <div class="form-group">
-                    <label>Full Official Name (as per ID)</label>
-                    <input type="text" id="reg-name" required placeholder="Enter full name">
+            <!-- Founder Journey Card -->
+            <div class="card">
+                <h2>👑 The Founder's Journey</h2>
+                <p class="subtitle" style="margin-bottom: 12px;">A message from Director Brian Kimathi Muthomi</p>
+                <div class="story-box">
+                    <p class="story-text">
+                        "I was raised in a struggling family, where our daily life was sustained solely by the hard wages of a quarry worker—a stone-cutter and excavator. I had a deep willingness to work hard and pursue a good career, but due to constant school fee challenges, I found myself out of school the majority of the time. This is not just my story; it is the silent reality for the majority of our African families. That is why I am dedicated to changing lives where I can, shifting away from temporary handouts to build permanent financial security for our parents."
+                    </p>
                 </div>
-                <div class="form-group">
-                    <label>National ID Number</label>
-                    <input type="number" id="reg-id" required placeholder="Enter ID number">
+                <div>
+                    <span class="contact-pill">📞 0719271310</span>
+                    <span class="contact-pill">✉️ muthomibrian.rcdp@gmail.com</span>
                 </div>
-                <div class="form-group">
-                    <label>M-Pesa Mobile Number</label>
-                    <input type="tel" id="reg-phone" required placeholder="Enter phone number">
-                </div>
-                <div class="form-group">
-                    <label>Riruta Residential Area</label>
-                    <input type="text" id="reg-area" required placeholder="e.g., Satellite, Stage, Corner">
-                </div>
+            </div>
 
-                <div class="privacy-box">
-                    <p class="privacy-text"><strong>🛡️ Kenya Data Protection Act Declaration:</strong> By signing, I authorize RCDP to securely hold my data for official records. I commit to the core model of weekly savings and sustainable school fee self-reliance.</p>
-                </div>
+            <!-- Vision and Mission Card -->
+            <div class="card">
+                <h2>🎯 Our Strategic Core</h2>
+                <h3>👁️ Vision Blueprint</h3>
+                <p class="info-p" id="view-vision">A self-reliant Riruta community free from the cycle of short-term financial dependency and school fees distress.</p>
+                
+                <h3>🚀 Mission Framework</h3>
+                <p class="info-p" id="view-mission">To empower vulnerable citizens through socio-economic mentorship, active table-banking setups, and sustainable business management tracking.</p>
+            </div>
 
-                <label>Draw Signature Below with Finger:</label>
-                <div class="canvas-container" id="canvas-wrap">
-                    <canvas id="signature-pad"></canvas>
-                </div>
-                <button type="button" onclick="clearSignature()" class="clear-btn">Clear Signature Pad</button>
+            <!-- Sign Up Form Card -->
+            <div class="card">
+                <h2>✍️ Digital Registration</h2>
+                <p class="subtitle">Complete your details below to activate your interactive tracking profile.</p>
+                <form onsubmit="handleRegistration(event)">
+                    <div class="form-group">
+                        <label>Full Official Name (as per ID)</label>
+                        <input type="text" id="reg-name" required placeholder="Enter full name">
+                    </div>
+                    <div class="form-group">
+                        <label>National ID Number</label>
+                        <input type="number" id="reg-id" required placeholder="Enter ID number">
+                    </div>
+                    <div class="form-group">
+                        <label>M-Pesa Mobile Number</label>
+                        <input type="tel" id="reg-phone" required placeholder="Enter phone number">
+                    </div>
 
-                <button type="submit" class="submit-btn">Submit & Activate Account</button>
-            </form>
+                    <div class="privacy-box">
+                        <input type="checkbox" id="reg-consent" required>
+                        <label for="reg-consent" class="privacy-text">
+                            <strong>🛡️ Membership Consent Declaration:</strong> I authorize RCDP to securely register my profile data. I pledge to actively commit to the weekly savings track to secure my subsequent terms safely.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit & Unlock Account Dashboard</button>
+                </form>
+            </div>
         </div>
 
-        <!-- TAB 2: CBO INFO HUB -->
-        <div id="tab-info" class="card hidden">
-            <h2>RCDP Knowledge Base</h2>
-            <p class="subtitle">Public information and bylaws regarding our project operations.</p>
-
-            <h3>🎯 Vision & Mission</h3>
-            <p class="info-p"><strong>Vision:</strong> A self-reliant Riruta community free from the cycle of short-term financial dependency and school fees distress.</p>
-            <p class="info-p"><strong>Mission:</strong> To empower vulnerable citizens through socio-economic mentorship, active table-banking setups, and sustainable business management tracking.</p>
-
-            <h3>👥 Current Leadership Committee</h3>
-            <p class="info-p">🗳️ Elected via Unanimous Consensus Caucus:</p>
-            <ul>
-                <li class="info-li"><strong>Founder & Chairperson:</strong> Brian Omwamba</li>
-                <li class="info-li"><strong>Secretary:</strong> Faith Mutheu</li>
-                <li class="info-li"><strong>Treasurer:</strong> David Kiprop</li>
-                <li class="info-li"><strong>Community Mobilizer:</strong> Mwangi Kamau</li>
-                <li class="info-li"><strong>Chama Banking Chair:</strong> Amina Hussein</li>
-                <li class="info-li"><strong>Welfare Coordinator:</strong> Joseph Otieno</li>
-            </ul>
-
-            <h3>📅 Meeting Schedules</h3>
-            <p class="info-p">⏰ <strong>Management Committee:</strong> First Saturday of every month at 2:00 PM (Held at the Founder's Secretariat house office).</p>
-            <p class="info-p">📢 <strong>General Assembly Caucus:</strong> Quarterly open community listening forums announced via local networks.</p>
-
-            <h3>📜 Core Table-Banking Regulations</h3>
-            <ul>
-                <li class="info-li"><strong>The Handout Rule:</strong> RCDP does not give free financial handouts. Emergency aid is structured alongside a mandatory capacity-building tracker.</li>
-                <li class="info-li"><strong>Savings Multiplier:</strong> Verified members can access interest-free school fee advances up to 3X their active savings pool.</li>
-                <li class="info-li"><strong>Collateral Guarantee:</strong> Two active registered group members must sign as internal trust guarantors before any transaction disbursement.</li>
-            </ul>
-        </div>
-
-        <!-- TAB 3: DASHBOARD -->
-        <div id="tab-dashboard" class="card hidden">
+        <!-- LOGGED IN INTERACTIVE DASHBOARD -->
+        <div id="portal-dashboard" class="card hidden">
             <div class="profile-strip">
                 <div>
-                    <span style="font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: bold; display: block;">Active Member</span>
-                    <span id="active-profile-name" class="profile-name">Brian Kimathi</span>
+                    <span style="font-size: 9px; color: #94a3b8; text-transform: uppercase; font-weight: bold; display: block;">Active RCDP Profile</span>
+                    <span id="active-profile-name" class="profile-name">Member Name</span>
                 </div>
-                <span class="profile-badge">RCDP-011</span>
+                <span class="profile-badge">ID Verified</span>
             </div>
 
-            <div class="metrics-grid">
-                <div class="metric-card green">
-                    <p class="metric-label">My Savings Pool</p>
-                    <p class="metric-val">KES <span id="dash-savings">0</span></p>
-                    <p class="metric-sub" style="color: #047857;">Weekly contributions</p>
-                </div>
-                <div class="metric-card">
-                    <p class="metric-label">Active Fee Advance</p>
-                    <p class="metric-val">KES 0</p>
-                    <p class="metric-sub">Clear account</p>
-                </div>
+            <!-- Tab Switching Menu -->
+            <div class="dash-tabs">
+                <button id="btn-sec-tracks" onclick="switchSection('tracks')" class="dash-btn active">📊 My Tracks</button>
+                <button id="btn-sec-bylaws" onclick="switchSection('bylaws')" class="dash-btn">📜 Constitution</button>
+                <button id="btn-sec-admin" onclick="switchSection('admin')" class="dash-btn">⚙️ Director Setup</button>
             </div>
+
+            <!-- SECTION 1: INTERACTIVE PROGRESS TRACKERS -->
+            <div id="sec-tracks" class="dash-section">
+                <h2>Account Growth Trackers</h2>
+                <p class="subtitle">Simulate and track your financial multiplier capability below.</p>
+                
+                <div class="tracker-card">
+
+                
 
 
